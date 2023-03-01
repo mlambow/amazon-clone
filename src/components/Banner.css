@@ -1,6 +1,13 @@
 .banner {
     position: relative;
+    margin-top: 15px;
 }
+
+/* @media screen and (max-width: 800px) {
+    div.banner {
+        margin-top: 15px;
+    }
+} */
 
 .banner_div {
     position: absolute;
