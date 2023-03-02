@@ -7,6 +7,7 @@
     top: 0;
     z-index: 20;
     width: 100%;
+    max-width: 1536px;
 }
 
 .header_logo {
@@ -122,22 +123,14 @@
     }
 }
 
-.dropdown {
-    display: none;
-    position: absolute;
-    background-color: beige;
-    width: 500px;
-    z-index: 5;
-}
-
-.dropdown p:hover {
-    background-color: #ddd;
-}
-
 .header_optionBasket:hover {
     color: #ff9900;
 }
 
 .header_option:hover {
     color:#ff9900
+}
+
+.link {
+    text-decoration: none;
 }

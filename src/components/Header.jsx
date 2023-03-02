@@ -9,7 +9,7 @@ import { UserAuth } from '../AuthContext'
 
 function Header() {
     const items = useSelector(selectItems)
-    const { logOut, user, googleSignIn } = UserAuth();
+    const { logOut, user } = UserAuth();
 
     const handleSignOut = async () => {
       try {
@@ -19,16 +19,6 @@ function Header() {
       }
     };
       
-    const handleGoogleSignIn = async () => {
-      try {
-        await googleSignIn();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    
-
-
   return (
     <div>
     <div className='header'>
@@ -46,21 +36,26 @@ function Header() {
         </div>
 
         <div className='header_nav'>
-            {user ? <div className='header_option' onClick={handleSignOut}>
-                <span className='header_optionOne'>
+            
+                {user ? <div className='header_option' onClick={handleSignOut}>
+                    <span className='header_optionOne'>
                     Hello {user.displayName}
-                </span>
-                <span className='header_optionTwo'>
+                    </span>
+                    <span className='header_optionTwo'>
                     Sign Out 
-                </span>
-            </div> : <div className='header_option' onClick={handleGoogleSignIn}>
-                <span className='header_optionOne'>
+                    </span>
+                    </div> :<Link to="/login" className='link'>
+                         <div className='header_option'>
+                    <span className='header_optionOne'>
                     Hello Guest
-                </span>
-                <span className='header_optionTwo'>
+                    </span>
+                    <span className='header_optionTwo'>
                     Sign In 
-                </span>
-            </div> }
+                    </span>
+                </div>
+                </Link>  
+                }
+                     
 
             <div className='header_option'>
                 <span className='header_optionOne'>

@@ -4,6 +4,8 @@ import {
   signInWithRedirect,
   signOut,
   onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
 } from 'firebase/auth';
 import { auth } from './firebase';
 
@@ -19,12 +21,12 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const logOut = () => {
-      signOut(auth)
+    signOut(auth)
   }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      setUser(currentUser); 
       console.log('User', currentUser)
     });
     return () => {
