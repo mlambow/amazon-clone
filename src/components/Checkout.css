@@ -30,6 +30,11 @@
     background-color: white;
 }
 
+.main_left_product > h1 {
+    color: black;
+    text-align: start;
+}
+
 h1 {
     border-bottom: solid 1px rgb(233, 226, 226);
     padding-bottom: 14px;

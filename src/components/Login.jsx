@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserAuth } from '../AuthContext'
 import "./Login.css"
@@ -8,18 +8,19 @@ import { auth } from '../firebase';
 
 function Login() {
 
-  const { googleSignIn, signInEmail } = UserAuth()
+  const { googleSignIn, user } = UserAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
   const navigate = useNavigate()
 
-  const signIn = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-    })
-    navigate('/')
+  const signIn = async (e) => {
+    try{
+      e.preventDefault();
+      await signInWithEmailAndPassword(auth, email, password)
+    } catch (error) {
+      setError(error.message)
+    }
   }
 
   const handleGoogleSignIn = async (e) => {
@@ -27,10 +28,14 @@ function Login() {
     try {
       await googleSignIn();
     } catch (error) {
-      console.log(error);
+      setError(error.message);
     }
-    await navigate('/')
+    navigate('/')
     };
+
+  useEffect(() => {
+    {user ? navigate('/') : navigate('/login')}
+  }, [user])
 
   return (
     <div className='login'>
@@ -45,18 +50,21 @@ function Login() {
                 <input type='email' value={email} onChange={e => setEmail(e.target.value)} />
 
                 <h5>Password</h5>
-          <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+                <input type='password' value={password} className='password' onChange={e => setPassword(e.target.value)} />
 
                 <button className='login_signInButton' type='submit' onClick={signIn}>Sign in</button>
                 <p className='hr'><span>Or</span></p>
                 
                 <button className='login_signInButton' onClick={handleGoogleSignIn}>Sign in with Google</button>
+                
             </form>
             <p>By signing in you agree to our Terms and Conditions</p>
-
+            <hr />
+            <p>Don't have an account?</p>
         <Link to='/register'>
           <button className='login_registerButton'>Create your Amazon Account</button>
         </Link>
+        {error && <span className='error'>{error}</span>}
         </div>
     </div>
   )

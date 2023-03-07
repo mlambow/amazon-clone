@@ -1,6 +1,8 @@
 .checkoutProduct {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-bottom: solid 1px rgb(233, 226, 226);
+    margin-top: 15px;
 }
 
 .checkoutProduct_details {

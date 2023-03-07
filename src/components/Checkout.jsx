@@ -45,7 +45,7 @@ function Checkout() {
                     src="https://links.papareact.com/ikj"
                     width='100%'
                     height={250}
-                    objectFit="contain"
+                    objectfit="contain"
                 />
 
                 <div className="main_left_product">
