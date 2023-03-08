@@ -30,6 +30,7 @@ function Login() {
     } catch (error) {
       setError(error.message);
     }
+    navigate('/')
   };
 
   useEffect(() => {
