@@ -30,8 +30,7 @@ function Login() {
     } catch (error) {
       setError(error.message);
     }
-    navigate('/')
-    };
+  };
 
   useEffect(() => {
     {user ? navigate('/') : navigate('/login')}

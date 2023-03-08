@@ -36,12 +36,9 @@ function Register() {
     }
   };
 
-  console.log(error)
-
-   {
-      user ? navigate('/') : navigate('/register')
-    }
-    
+  useEffect(() => {
+    {user ? navigate('/') : navigate('/register')}
+  }, [user])
 
   return (
     <div className='register'>
